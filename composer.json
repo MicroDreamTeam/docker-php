@@ -1,5 +1,6 @@
 {
     "name": "itwmw/docker",
+    "description": "Docker Api",
     "license": "Apache-2.0",
     "authors": [
         {
