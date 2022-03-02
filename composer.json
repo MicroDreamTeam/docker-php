@@ -1,0 +1,20 @@
+{
+    "name": "itwmw/docker",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "虞灪",
+            "email": "995645888@qq.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Itwmw\\Docker\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^8.0.2",
+        "guzzlehttp/guzzle": "^6.3|^7.0",
+        "ext-json": "*"
+    }
+}
