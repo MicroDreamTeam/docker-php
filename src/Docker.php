@@ -14,6 +14,10 @@ class Docker
 
     public function __construct(string $dockerApiUrl = 'http://127.0.0.1:2375/')
     {
+        $headers = @get_headers($dockerApiUrl);
+        if ($headers === false){
+            throw new DockerException("请开启Docker Api");
+        }
         $this->client = new Client([
             'base_uri'    => $dockerApiUrl,
             'http_errors' => false,
