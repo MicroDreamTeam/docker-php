@@ -66,7 +66,6 @@ class Images extends BaseDocker
             'stream' => !(false === $showProgress)
         ]);
 
-        var_dump($response->getStatusCode());
         $this->handlerStatusCode($response);
 
         if (false !== $showProgress) {
