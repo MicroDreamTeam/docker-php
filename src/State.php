@@ -5,9 +5,9 @@ namespace Itwmw\Docker;
 /**
  * ContainerState stores container's running state. It's part of ContainerJSONBase and will be returned by the "inspect" command.
  */
-class Status
+class State
 {
-    public function __construct(public array $status)
+    public function __construct(public array $state)
     {
     }
 
@@ -17,7 +17,7 @@ class Status
      */
     public function getStatus(): ?string
     {
-        return $this->status['Status'] ?? null;
+        return $this->state['Status'] ?? null;
     }
 
     /**
@@ -33,7 +33,7 @@ class Status
      */
     public function isRunning(): bool
     {
-        return $this->status['Running'] ?? false;
+        return $this->state['Running'] ?? false;
     }
 
     /**
@@ -42,7 +42,7 @@ class Status
      */
     public function isPaused(): bool
     {
-        return $this->status['Paused'] ?? false;
+        return $this->state['Paused'] ?? false;
     }
 
     /**
@@ -51,15 +51,15 @@ class Status
      */
     public function isRestarting(): bool
     {
-        return $this->status['Restarting'] ?? false;
+        return $this->state['Restarting'] ?? false;
     }
 
     /**
-     * All Suatus
+     * get State
      * @return array
      */
-    public function getAll(): array
+    public function getState(): array
     {
-        return $this->status;
+        return $this->state;
     }
 }

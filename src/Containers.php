@@ -174,18 +174,18 @@ class Containers extends BaseDocker
     }
 
     /**
-     * Get docker status
+     * Get docker state
      *
      * ContainerState stores container's running state. It's part of ContainerJSONBase and will be returned by the "inspect" command.
      *
      * @param string $id ID or name of the container
-     * @return Status
+     * @return State
      * @throws DockerException
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @noinspection PhpFullyQualifiedNameUsageInspection
      */
-    public function status(string $id): Status
+    public function state(string $id): State
     {
-        return new Status($this->inspect($id));
+        return new State($this->inspect($id)['State']);
     }
 }
