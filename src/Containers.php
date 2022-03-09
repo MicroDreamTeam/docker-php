@@ -23,14 +23,14 @@ class Containers extends BaseDocker
      */
     public function create(string $name, array $options = [])
     {
-        $response = $this->client->post('/containers/create',[
+        $response = $this->client->post('/containers/create', [
             'query' => [
                 'name' => $name
             ],
             'json' => $options
         ]);
 
-        $this->handlerStatusCode($response,[201]);
+        $this->handlerStatusCode($response, [201]);
     }
 
     /**
@@ -171,5 +171,21 @@ class Containers extends BaseDocker
         ]);
 
         $this->handlerStatusCode($response, [204]);
+    }
+
+    /**
+     * Get docker status
+     *
+     * ContainerState stores container's running state. It's part of ContainerJSONBase and will be returned by the "inspect" command.
+     *
+     * @param string $id ID or name of the container
+     * @return Status
+     * @throws DockerException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @noinspection PhpFullyQualifiedNameUsageInspection
+     */
+    public function status(string $id): Status
+    {
+        return new Status($this->inspect($id));
     }
 }
