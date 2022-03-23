@@ -3,6 +3,7 @@
 namespace Itwmw\Docker;
 
 use GuzzleHttp\Client;
+use Itwmw\Docker\Structure\ImageName;
 
 class Containers extends BaseDocker
 {
@@ -174,7 +175,7 @@ class Containers extends BaseDocker
     }
 
     /**
-     * Get docker state
+     * Get container state
      *
      * ContainerState stores container's running state. It's part of ContainerJSONBase and will be returned by the "inspect" command.
      *
@@ -187,5 +188,19 @@ class Containers extends BaseDocker
     public function state(string $id): State
     {
         return new State($this->inspect($id)['State']);
+    }
+
+    /**
+     * Get the name of the image to use when creating the container/
+     *
+     * @param string $id ID or name of the container
+     * @return ImageName
+     * @throws DockerException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @noinspection PhpFullyQualifiedNameUsageInspection
+     */
+    public function image(string $id): ImageName
+    {
+        return new ImageName($this->inspect($id)['Config']['Image'] ?? '');
     }
 }
